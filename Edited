@@ -2217,7 +2217,7 @@ handleSuccess(az)
 else
 ag.WindUI:Notify{
 Title="Key System Error",
-Content="Your key is invalid, please check again!",
+Content="Key invalid, please check again!",
 Icon="triangle-alert",
 }
 end
