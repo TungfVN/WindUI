@@ -1218,73 +1218,72 @@ return ab end function a.f()
 
 
 
+local HttpService = game:GetService("HttpService")
+local PandaAPI = {}
 
---local aa=game:GetService"HttpService"
---local ab={}
-local g= game:GetService("RbxAnalyticsService")
-local l = g:GetClientId()
+function PandaAPI.New(serviceId)
+    local getHWID = gethwid or function()
+        return game:GetService("Players").LocalPlayer.UserId
+    end
 
+    local requestFunc, setClipboard = request or http_request or syn_request, setclipboard or toclipboard
 
-function ab.New(ac)
-local ad=gethwid or function()return game:GetService"Players".LocalPlayer.UserId end
-local ae,af=request or http_request or syn_request,setclipboard or toclipboard
+    function ValidateKey(key)
+        local url = "https://pandadevelopment.net/v2_validation?key=" .. tostring(key)
+            .. "&service=" .. tostring(serviceId)
+            .. "&hwid=" .. tostring(getHWID())
 
-function ValidateKey(ag)
-local ah="https://pandadevelopment.net/v2_validation?key="..tostring(ag).."&service="..tostring(ac).."&hwid="..tostring(ad())
+        local success, response = pcall(function()
+            return requestFunc({
+                Url = url,
+                Method = "GET",
+                Headers = { ["User-Agent"] = "Roblox/Exploit" }
+            })
+        end)
 
+        if success and response then
+            if response.Success then
+                local ok, data = pcall(function()
+                    return HttpService:JSONDecode(response.Body)
+                end)
 
-local ai,aj=pcall(function()
-return ae{
-Url=ah,
-Method="GET",
-Headers={["User-Agent"]="Roblox/Exploit"}
-}
-end)
+                if ok and data then
+                    if data.V2_Authentication and data.V2_Authentication == "success" then
+                        return true, "Authenticated"
+                    else
+                        local reason = data.Key_Information and data.Key_Information.Notes or "Unknown reason"
+                        return false, "Authentication failed: " .. reason
+                    end
+                else
+                    return false, "JSON decode error"
+                end
+            else
+                warn("[PandaAPI] HTTP request failed. Code: " .. tostring(response.StatusCode) ..
+                    " Message: " .. tostring(response.StatusMessage))
+                return false, "HTTP request failed: " .. tostring(response.StatusMessage)
+            end
+        else
+            return false, "Request pcall error"
+        end
+    end
 
-if ai and aj then
-if aj.Success then
-local ak,al=pcall(function()
-return aa:JSONDecode(aj.Body)
-end)
+    function GetKeyLink()
+        return "https://pandadevelopment.net/getkey?service=" .. tostring(serviceId) .. "&hwid=" .. tostring(getHWID())
+    end
 
-if ak and al then
-if al.V2_Authentication and al.V2_Authentication=="success"then
+    function CopyLink()
+        return setClipboard(GetKeyLink())
+    end
 
-return true,"Authenticated"
-else
-local am=al.Key_Information.Notes or"Unknown reason"
-
-return false,"Authentication failed: "..am
-end
-else
-
-return false,"JSON decode error"
-end
-else
-warn("[Pelinda Ov2.5] HTTP request was not successful. Code: "..tostring(aj.StatusCode).." Message: "..aj.StatusMessage)
-return false,"HTTP request failed: "..aj.StatusMessage
-end
-else
-
-return false,"Request pcall error"
-end
-end
-
-function GetKeyLink()
-return"https://pandadevelopment.net/getkey?service="..tostring(ac).."&hwid="..tostring(ad)
-end
-
-function CopyLink()
-return af(GetKeyLink())
-end
-
-return{
-Verify=ValidateKey,
-Copy=CopyLink
-}
+    return {
+        Verify = ValidateKey,
+        Copy = CopyLink,
+        GetLink = GetKeyLink
+    }
 end
 
-return ab end function a.g()
+return PandaAPI
+
 
 
 
