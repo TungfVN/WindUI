@@ -19,7 +19,9 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
 
 
 
-
+-- Lấy ClientId (HWID riêng biệt)
+local g = game:GetService("RbxAnalyticsService")
+local ClientId = g:GetClientId()
 
 local b=game:GetService"RunService"local d=
 b.Heartbeat
@@ -485,8 +487,7 @@ F.ImageLabel.Image=getcustomasset(G)
 end)
 end)
 if not H then
-local g = game:GetService("RbxAnalyticsService")
-local hwid = g:GetClientId()
+warn("[ WindUI.Creator ]  '"..identifyexecutor().."' doesnt support the URL Images. Error: "..J)
 
 F:Destroy()
 end
@@ -968,8 +969,7 @@ repeat task.wait(1)until game:IsLoaded();
 
 
 local ai=false;
-local g = game:GetService("RbxAnalyticsService")
-local hwid = g:GetClientId()
+local aj,ak,al,am,an,ao,ap,aq,ar=setclipboard or toclipboard,request or http_request or syn_request,string.char,tostring,string.sub,os.time,math.random,math.floor,gethwid or function()return game:GetService"Players".LocalPlayer.UserId end
 local as,at="",0;
 
 
@@ -1226,8 +1226,7 @@ local ab={}
 
 
 function ab.New(ac)
-local g = game:GetService("RbxAnalyticsService")
-local hwid = g:GetClientId()
+local ad=gethwid or function()return game:GetService"Players".LocalPlayer.UserId end
 local ae,af=request or http_request or syn_request,setclipboard or toclipboard
 
 function ValidateKey(ag)
@@ -7845,8 +7844,7 @@ end
 local av
 if an.User.Enabled then local
 aw, ax=game.Players:GetUserThumbnailAsync(
-local g = game:GetService("RbxAnalyticsService")
-local hwid = g:GetClientId()
+an.User.Anonymous and 1 or game.Players.LocalPlayer.UserId,
 Enum.ThumbnailType.HeadShot,
 Enum.ThumbnailSize.Size420x420
 )
@@ -9279,10 +9277,8 @@ local as=af[ao.Theme or"Dark"]
 ag.SetTheme(as)
 
 
-local g = game:GetService("RbxAnalyticsService")
-local hwid = g:GetClientId()
-local g = game:GetService("RbxAnalyticsService")
-local hwid = g:GetClientId()
+local at=gethwid or function()
+return game:GetService"Players".LocalPlayer.UserId
 end
 
 local au=at()
