@@ -19,9 +19,7 @@ local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
 
 
 
--- Lấy ClientId (HWID riêng biệt)
-local g = game:GetService("RbxAnalyticsService")
-local ClientId = g:GetClientId()
+
 
 local b=game:GetService"RunService"local d=
 b.Heartbeat
@@ -1221,8 +1219,10 @@ return ab end function a.f()
 
 
 
-local aa=game:GetService"HttpService"
-local ab={}
+--local aa=game:GetService"HttpService"
+--local ab={}
+local g= game:GetService("RbxAnalyticsService")
+local l = g:GetClientId()
 
 
 function ab.New(ac)
