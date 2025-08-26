@@ -1878,7 +1878,7 @@ BackgroundTransparency=1,
 as,ar,
 })
 
-local au=af("Enter Key","key",nil,"Input",function(au)
+local au=af("Enter Key","key-square",nil,"Input",function(au)
 am=au
 end)
 
@@ -1994,7 +1994,7 @@ ay.AnchorPoint=Vector2.new(0,1)
 end
 
 if ag.KeySystem.URL then
-ae("Get key","key",function()
+ae("Get key","clipboard-copy",function()
 setclipboard(ag.KeySystem.URL)
 end,"Secondary",aw.Frame)
 end
@@ -2010,7 +2010,7 @@ if ag.KeySystem.API then
 
 local az=240
 local aA=false
-local aB=ae("Get key","key",nil,"Secondary",aw.Frame)
+local aB=ae("Get key","clipboard-copy",nil,"Secondary",aw.Frame)
 
 local aC=ab.NewRoundFrame(99,"Squircle",{
 Size=UDim2.new(0,1,1,0),
