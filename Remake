@@ -2299,11 +2299,6 @@ if aB then
 if ag.KeySystem.SaveKey then
 handleSuccess(az)
 else
-ag.WindUI:Notify{
-Title="Key System Error",
-Content="Key invalid, please check again!",
-Icon="triangle-alert",
-}
 ak:Close()()
 task.wait(.4)
 ai(true)
@@ -2324,8 +2319,8 @@ if aB then
 handleSuccess(az)
 else
 ag.WindUI:Notify{
-Title="Key System. Error",
-Content=aC,
+Title="Key System Error",
+Content="Key invalid, please check again!",
 Icon="triangle-alert",
 }
 end
