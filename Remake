@@ -9911,3 +9911,20 @@ return ay
 end
 
 return aa
+-- 🗑️ Added RemoveConfig to ConfigManager
+function ConfigManager:RemoveConfig(configName)
+    local folder = "workspace/WindUI/" .. (Window.Folder or "default") .. "/config/"
+    local filePath = folder .. configName .. ".json"
+
+    if isfile and delfile then
+        if isfile(filePath) then
+            delfile(filePath)
+            return true
+        else
+            warn("⚠️ Config file not found: " .. filePath)
+        end
+    else
+        warn("❌ Your executor does not support file operations (isfile/delfile)")
+    end
+    return false
+end
