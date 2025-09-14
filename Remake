@@ -9948,7 +9948,7 @@ ah(ao.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Qu
 ao:Dialog{
 
 Title="Close Window",
-Content="Do You Want To Close This Window? You Will Not Be Able To Open It Again.",
+Content="Do You Want To Close This UI?",
 Buttons={
 {
 Title="No", 
