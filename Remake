@@ -9948,7 +9948,7 @@ ao:CreateTopbarButton("Close","x",function()
 ah(ao.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 ao:Dialog{
 
-Title="Close Window",
+Title="Window",
 Content="Do You Want To Close This UI?",
 Icon="grid-2x2",
 Buttons={
