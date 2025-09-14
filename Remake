@@ -9949,7 +9949,7 @@ ah(ao.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Qu
 ao:Dialog{
 
 Title="Close Window",
-Icon="grid-2x2"
+Icon="grid-2x2",
 Content="Do You Want To Close This UI?",
 Buttons={
 {
