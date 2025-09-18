@@ -9699,7 +9699,7 @@ end
 end
 end
 
-if not ao.IsPC and ao.IsOpenButtonEnabled then
+if ao.IsOpenButtonEnabled then
 af.AddSignal(i.Button.TextButton.MouseButton1Click,function()
 
 i:Visible(false)
@@ -9968,9 +9968,9 @@ ao:CreateTopbarButton("Close","x",function()
 ah(ao.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 ao:Dialog{
 
-Title="Window",
+Title="Hacker Hub",
 Content="Do You Want To Close This Window? Can Not Open Again!",
-Icon="grid-2x2",
+Icon="rbxassetid://76109077411071",
 Buttons={
 {
 Title="No",
