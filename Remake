@@ -9970,7 +9970,7 @@ ao:Dialog{
 
 Title="Hacker Hub",
 Content="Do You Want To Close This Window? Can Not Open Again!",
-Icon="rbxassetid://76109077411071",
+Icon="panel-right-close",
 Buttons={
 {
 Title="No",
