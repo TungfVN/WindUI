@@ -9968,7 +9968,7 @@ ao:CreateTopbarButton("Close","x",function()
 ah(ao.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 ao:Dialog{
 
-Title="Hacker Hub",
+Title="",
 Content="Do You Want To Close This Window? Can Not Open Again!",
 Icon="panel-right-close",
 Buttons={
