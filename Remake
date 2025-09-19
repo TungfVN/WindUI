@@ -9969,7 +9969,7 @@ ah(ao.UIElements.Main,0.35,{Position=UDim2.new(0.5,0,0.5,0)},Enum.EasingStyle.Qu
 ao:Dialog{
 
 Title="",
-Content="Do You Want To Close This Window? Can Not Open Again!",
+Content="Do You Want To Close This UI",
 Icon="panel-right-close",
 Buttons={
 {
