@@ -2327,7 +2327,7 @@ m.Copy()
 ag.WindUI:Notify{
 Title="Copied",
 Content="Key link copied to clipboard!",
-Icon="clipboard-copied",
+Icon="clipboard-copy",
 }
 end)
 end
