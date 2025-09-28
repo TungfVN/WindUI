@@ -2356,11 +2356,16 @@ local az=tostring(am or"empty")local aA=
 ag.Folder or ag.Title
 
 if not ag.KeySystem.API then
-local aB=type(ag.KeySystem.Key)=="table"
+local aB = type(ag.KeySystem.Key)=="table"
 and table.find(ag.KeySystem.Key,az)
 or ag.KeySystem.Key==az
 
 if aB then
+ag.WindUI:Notify{
+Title = "Key System Valid",
+Content = "Successfully obtained a valid key!",
+Icon = "badge-check",
+}
 if ag.KeySystem.SaveKey then
 handleSuccess(az)
 else
@@ -2368,6 +2373,13 @@ ak:Close()()
 task.wait(.4)
 ai(true)
 end
+else
+-- ❌ chỉ báo sai khi key thường không hợp lệ
+ag.WindUI:Notify{
+Title="Key System Error",
+Content="Key invalid, please check again!",
+Icon="triangle-alert",
+}
 end
 else
 local aB,aC
@@ -2383,6 +2395,7 @@ end
 if aB then
 handleSuccess(az)
 else
+-- ❌ báo sai khi kiểm tra API thất bại
 ag.WindUI:Notify{
 Title="Key System Error",
 Content="Key invalid, please check again!",
