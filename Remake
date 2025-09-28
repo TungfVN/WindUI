@@ -2352,8 +2352,17 @@ ai(true)
 end
 
 local az=ae("Submit","arrow-right",function()
-local az=tostring(am or"empty")local aA=
-ag.Folder or ag.Title
+local az=tostring(am or"")
+-- ⛔ Chưa nhập gì
+if az == "" then
+ag.WindUI:Notify{
+Title = "Input Required",
+Content = "Please enter a key before submitting!",
+Icon = "octagon-alert",
+}
+return
+end
+local aA=ag.Folder or ag.Title
 
 if not ag.KeySystem.API then
 local aB = type(ag.KeySystem.Key)=="table"
