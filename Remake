@@ -2352,9 +2352,9 @@ ai(true)
 end
 
 local az=ae("Submit","arrow-right",function()
-local az=tostring(am or"")
+local az=tostring(am or"empty")
 -- ⛔ Chưa nhập gì
-if az == "" then
+if az == "empty" then
 ag.WindUI:Notify{
 Title = "Input Required",
 Content = "Please enter a key before submitting!",
