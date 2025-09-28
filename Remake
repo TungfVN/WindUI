@@ -2118,6 +2118,11 @@ end
 if ag.KeySystem.URL then
 ae("Get Key","clipboard-copy",function()
 setclipboard(ag.KeySystem.URL)
+ag.WindUI:Notify{
+Title = "Copied",
+Content = "Key link copied to clipboard!",
+Icon = "clipboard-copy",
+}
 end,"Secondary",aw.Frame)
 end
 
