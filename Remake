@@ -2351,68 +2351,68 @@ task.wait(.4)
 ai(true)
 end
 
-local az = ae("Submit","arrow-right",function()
-    local aA = ag.Folder or ag.Title
-    local inputStr = tostring(au.Input.Text or "")
+local az=ae("Submit","arrow-right",function()
+local az=tostring(am or"empty")
+if az == "empty" then
+ag.WindUI:Notify{
+Title = "Input Required",
+Content = "Please enter a key before submitting!",
+Icon = "octagon-alert",
+}
+return
+end
+local aA=ag.Folder or ag.Title
 
-    if inputStr == "" then
-        ag.WindUI:Notify{
-            Title = "Input Required",
-            Content = "Please enter a key before submitting!",
-            Icon = "octagon-alert",
-        }
-        return
-    end
+if not ag.KeySystem.API then
+local aB = type(ag.KeySystem.Key)=="table"
+and table.find(ag.KeySystem.Key,az)
+or ag.KeySystem.Key==az
 
-    if not ag.KeySystem.API then
-        local aB = (type(ag.KeySystem.Key) == "table" and table.find(ag.KeySystem.Key, inputStr))
-                 or (ag.KeySystem.Key == inputStr)
+if aB then
+ag.WindUI:Notify{
+Title = "Key System Valid",
+Content = "Successfully obtained a valid key!",
+Icon = "badge-check",
+}
+if ag.KeySystem.SaveKey then
+handleSuccess(az)
+else
+ak:Close()()
+task.wait(.4)
+ai(true)
+end
+else
+ag.WindUI:Notify{
+Title="Key System Error",
+Content="Key invalid,please check again!",
+Icon="triangle-alert",
+}
+end
+else
+local aB,aC
+for aD,aE in next,al do
+local b,e=aE.Verify(az)
+if b then
+aB,aC=true,e
+break
+end
+aC=e
+end
 
-        if aB then
-            ag.WindUI:Notify{
-                Title = "Key System Valid",
-                Content = "Successfully obtained a valid key!",
-                Icon = "badge-check",
-            }
-            if ag.KeySystem.SaveKey then
-                handleSuccess(inputStr)
-            else
-                ak:Close()()
-                task.wait(.4)
-                ai(true)
-            end
-        else
-            ag.WindUI:Notify{
-                Title = "Key System Error",
-                Content = "The key you entered is invalid. Please try again!",
-                Icon = "triangle-alert",
-            }
-        end
-    else
-        local aB, aC = false, nil
-        for _, service in next, al do
-            local ok, err = service.Verify(inputStr)
-            if ok then
-                aB, aC = true, err
-                break
-            end
-            aC = err
-        end
-
-        if aB then
-            handleSuccess(inputStr)
-        else
-            ag.WindUI:Notify{
-                Title = "Key System Error",
-                Content = "The key you entered is invalid. Please try again!",
-                Icon = "triangle-alert",
-            }
-        end
-    end
+if aB then
+handleSuccess(az)
+else
+ag.WindUI:Notify{
+Title="Key System Error",
+Content="Key invalid,please check again!",
+Icon="triangle-alert",
+}
+end
+end
 end,"Primary",aw)
 
-az.AnchorPoint = Vector2.new(1,0.5)
-az.Position = UDim2.new(1,0,0.5,0)
+az.AnchorPoint=Vector2.new(1,0.5)
+az.Position=UDim2.new(1,0,0.5,0)
 
 
 
