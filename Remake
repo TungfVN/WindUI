@@ -10806,7 +10806,7 @@ aq:SetToTheCenter()
 aq:Dialog{
 
 Title="-Hacker Hub-",
-Content="Do You Want To Close This Window? Wont Be Able To Open It Again.",
+Content="Do You Want To Close This Window? You Wont Be Able To Open It Again.",
 Icon="panel-right-close",
 Buttons={
 {
