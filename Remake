@@ -2291,11 +2291,19 @@ ai(true)
 end
 
 local az=ae("Submit","arrow-right",function()
-local az=tostring(am or"empty")local aA=
-ag.Folder or ag.Title
+local az=tostring(am or"empty")
+if az == "empty" then
+ag.WindUI:Notify{
+Title = "Input Required",
+Content = "Please enter a key before submitting!",
+Icon = "octagon-alert",
+}
+return
+end
+local aA=ag.Folder or ag.Title
 
 if not ag.KeySystem.API then
-local aB=type(ag.KeySystem.Key)=="table"
+local aB = type(ag.KeySystem.Key)=="table"
 and table.find(ag.KeySystem.Key,az)
 or ag.KeySystem.Key==az
 
@@ -2312,6 +2320,12 @@ ak:Close()()
 task.wait(.4)
 ai(true)
 end
+else
+ag.WindUI:Notify{
+Title="Key System Error",
+Content="Key Invalid, Please Check Again!",
+Icon="triangle-alert",
+}
 end
 else
 local aB,aC
