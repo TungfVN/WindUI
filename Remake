@@ -10905,9 +10905,10 @@ return F
 end
 
 
-aq:CreateTopbarButton("Close","x",function()
-aq:SetToTheCenter()
-aq:Dialog{
+ar:CreateTopbarButton("Close","x",function()
+if not ar.IgnoreAlerts then
+ar:SetToTheCenter()
+ar:Dialog{
 
 Title="-Hacker Hub-",
 Content="Do You Want To Close This UI? You Wont Be Able To Open It Again.",
