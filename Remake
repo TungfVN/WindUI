@@ -4,7 +4,7 @@
     | |/ |/ / / _ \/ _  / /_/ // /  
     |__/|__/_/_//_/\_,_/\____/___/
     
-    v1.6.55  |  2025-10-19  |  Roblox UI Library for scripts
+    v1.6.56  |  2025-10-20  |  Roblox UI Library for scripts
     
     This script is NOT intended to be modified.
     To view the source code, see the `src/` folder on the official GitHub repository.
@@ -21,7 +21,7 @@ Dialog="Accent",
 Background="Accent",
 Hover="Text",
 
-WindowBackground="Accent",
+WindowBackground="Background",
 
 TopbarButtonIcon="Icon",
 TopbarTitle="Text",
@@ -1453,7 +1453,7 @@ New=a.load'g'.New
 return[[
 {
     "name": "windui",
-    "version": "1.6.55",
+    "version": "1.6.56",
     "main": "./dist/main.lua",
     "repository": "https://github.com/Footagesus/WindUI",
     "discord": "https://discord.gg/ftgs-development-hub-1300692552005189632",
@@ -2349,7 +2349,7 @@ end
 
 local function handleSuccess(az)
 ak:Close()()
-writefile((ag.Folder or ag.Title).."/"..ah..".key",tostring(az))
+writefile((ag.Folder or"Temp").."/"..ah..".key",tostring(az))
 task.wait(.4)
 ai(true)
 end
@@ -4480,7 +4480,7 @@ if af.Thumbnail then
 ak=aa.Image(
 af.Thumbnail,
 af.Title,
-ae.Window.NewElements and af.UICorner-12 or(af.UICorner-4),
+ae.Window.NewElements and af.UICorner-11 or(af.UICorner-4),
 ae.Window.Folder,
 "Thumbnail",
 false,
@@ -4492,7 +4492,7 @@ if af.Image then
 al=aa.Image(
 af.Image,
 af.Title,
-ae.Window.NewElements and af.UICorner-12 or(af.UICorner-4),
+ae.Window.NewElements and af.UICorner-11 or(af.UICorner-4),
 ae.Window.Folder,
 "Image",
 not af.Color and true or false,
@@ -10212,19 +10212,24 @@ PaddingBottom=UDim.new(0,ar.UIPadding),
 
 ai.AddSignal(ar.UIElements.Main.Main.Topbar.Left:GetPropertyChangedSignal"AbsoluteSize",function()
 local j=0
-local l=ar.UIElements.Main.Main.Topbar.Right.UIListLayout.AbsoluteContentSize.X
+local l=ar.UIElements.Main.Main.Topbar.Right.UIListLayout.AbsoluteContentSize.X/aq.WindUI.UIScale
 if i and g then
-j=math.max(i.TextBounds.X,g.TextBounds.X)
+j=math.max(i.TextBounds.X/aq.WindUI.UIScale,g.TextBounds.X/aq.WindUI.UIScale)
 else
-j=i.TextBounds.X
+j=i.TextBounds.X/aq.WindUI.UIScale
 end
 if h then
-j=j+ar.IconSize+ar.UIPadding+4
+j=j+(ar.IconSize/aq.WindUI.UIScale)+(ar.UIPadding/aq.WindUI.UIScale)+(4/aq.WindUI.UIScale)
 end
-ar.UIElements.Main.Main.Topbar.Center.Position=UDim2.new(0,j+ar.UIPadding,0.5,0)
+ar.UIElements.Main.Main.Topbar.Center.Position=UDim2.new(
+0,
+j+(ar.UIPadding/aq.WindUI.UIScale),
+0.5,
+0
+)
 ar.UIElements.Main.Main.Topbar.Center.Size=UDim2.new(
 1,
--j-l-(ar.UIPadding*2),
+-j-l-((ar.UIPadding*2)/aq.WindUI.UIScale),
 1,
 0
 )
