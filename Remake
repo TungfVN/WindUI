@@ -2187,7 +2187,7 @@ ay.AnchorPoint=Vector2.new(0,1)
 end
 
 if ag.KeySystem.URL then
-ae("Get key","key",function()
+ae("Get key","link",function()
 setclipboard(ag.KeySystem.URL)
 ag.WindUI:Notify{
 Title = "Copied",
