@@ -5400,7 +5400,7 @@ ThemeTag={
 ImageColor3="Text"
 },
 Parent=ap,
-Size=UDim2.new(0,NewElement and (24+24+4) or (24*1.6),0,24),
+Size=UDim2.new(0,ak and(52)or(40.8),0,24),
 AnchorPoint=Vector2.new(1,0.5),
 Position=UDim2.new(0,0,0.5,0),
 },{
@@ -5907,53 +5907,54 @@ ElementTable=aj,
 ParentConfig=ai,
 }
 
+
 aj.UIElements.SliderIcon=aa.NewRoundFrame(99,"Squircle",{
-ImageTransparency=.95,
-Size=UDim2.new(1,-aj.TextBoxWidth-8,0,4),
-Name="Frame",
-ThemeTag={
-ImageColor3="Text",
-},
+    ImageTransparency=.95,
+    Size=UDim2.new(1,-aj.TextBoxWidth-8,0,3), -- Giảm từ 4 xuống 3
+    Name="Frame",
+    ThemeTag={
+        ImageColor3="Text",
+    },
 },{
-aa.NewRoundFrame(99,"Squircle",{
-Name="Frame",
-Size=UDim2.new(ap,0,1,0),
-ImageTransparency=.1,
-ThemeTag={
-ImageColor3="Slider",
-},
-},{
-aa.NewRoundFrame(99,"Squircle",{
-Size=UDim2.new(0,ai.Window.NewElements and(aj.ThumbSize*1.5)or(aj.ThumbSize),0,aj.ThumbSize),
-Position=UDim2.new(1,0,0.5,0),
-AnchorPoint=Vector2.new(0.5,0.5),
-ThemeTag={
-ImageColor3="SliderThumb",
-},
-Name="Thumb",
-},{
-aa.NewRoundFrame(99,"SquircleOutline2",{
-Size=UDim2.new(1,0,1,0),
-ImageColor3=Color3.new(1,1,1),
-Name="Highlight",
-ImageTransparency=.45,
-},{
-ac("UIGradient",{
-Rotation=60,
-Color=ColorSequence.new{
-ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
-ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
-ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
-},
-Transparency=NumberSequence.new{
-NumberSequenceKeypoint.new(0.0,0.1),
-NumberSequenceKeypoint.new(0.5,1),
-NumberSequenceKeypoint.new(1.0,0.1),
-}
-}),
-}),
-})
-})
+    aa.NewRoundFrame(99,"Squircle",{
+        Name="Frame",
+        Size=UDim2.new(ap,0,1,0),
+        ImageTransparency=.1,
+        ThemeTag={
+            ImageColor3="Slider",
+        },
+    },{
+        aa.NewRoundFrame(99,"Squircle",{
+            Size=UDim2.new(0,ai.Window.NewElements and(aj.ThumbSize*1.5)or(aj.ThumbSize),0,aj.ThumbSize), -- Giảm kích thước thumb
+            Position=UDim2.new(1,0,0.5,0),
+            AnchorPoint=Vector2.new(0.5,0.5),
+            ThemeTag={
+                ImageColor3="SliderThumb",
+            },
+            Name="Thumb",
+        },{
+            aa.NewRoundFrame(99,"SquircleOutline2",{
+                Size=UDim2.new(1,0,1,0),
+                ImageColor3=Color3.new(1,1,1),
+                Name="Highlight",
+                ImageTransparency=.45,
+            },{
+                ac("UIGradient",{
+                    Rotation=60,
+                    Color=ColorSequence.new{
+                        ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
+                        ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
+                        ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
+                    },
+                    Transparency=NumberSequence.new{
+                        NumberSequenceKeypoint.new(0.0,0.1),
+                        NumberSequenceKeypoint.new(0.5,1),
+                        NumberSequenceKeypoint.new(1.0,0.1),
+                    }
+                }),
+            }),
+        })
+    })
 })
 
 aj.UIElements.SliderContainer=ac("Frame",{
