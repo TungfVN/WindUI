@@ -2211,6 +2211,11 @@ end
 if ag.KeySystem.URL then
 ae("Get key","key",function()
 setclipboard(ag.KeySystem.URL)
+ag.WindUI:Notify{
+Title = "Copied",
+Content = "Key link copied to clipboard!",
+Icon = "clipboard-copy",
+}
 end,"Secondary",ax.Frame)
 end
 
@@ -2225,7 +2230,7 @@ if ag.KeySystem.API then
 
 local aA=240
 local aB=false
-local aC=ae("Get key","key",nil,"Secondary",ax.Frame)
+local aC=ae("Get key","clipboard-copy",nil,"Secondary",ax.Frame)
 
 local aD=ab.NewRoundFrame(99,"Squircle",{
 Size=UDim2.new(0,1,1,0),
@@ -2406,9 +2411,9 @@ end)
 ab.AddSignal(r.MouseButton1Click,function()
 m.Copy()
 ag.WindUI:Notify{
-Title="Key System",
-Content="Key link copied to clipboard.",
-Image="key",
+Title="Copied",
+Content="Key link copied to clipboard!",
+Icon="clipboard-copy",
 }
 end)
 end
@@ -2450,11 +2455,6 @@ task.wait(.4)
 ai(true)
 end
 else
-ag.WindUI:Notify{
-Title="Key System. Error",
-Content="Invalid key.",
-Icon="triangle-alert",
-}
 end
 elseif not ag.KeySystem.API then
 local aC=type(ag.KeySystem.Key)=="table"
@@ -2462,6 +2462,11 @@ and table.find(ag.KeySystem.Key,aA)
 or ag.KeySystem.Key==aA
 
 if aC then
+ag.WindUI:Notify{
+Title = "Key System Valid",
+Content = "Successfully Obtained A Valid Key!",
+Icon = "badge-check",
+}
 if ag.KeySystem.SaveKey then
 handleSuccess(aA)
 else
@@ -2485,8 +2490,8 @@ if aC then
 handleSuccess(aA)
 else
 ag.WindUI:Notify{
-Title="Key System. Error",
-Content=aD,
+Title="Key System Error",
+Content="Key Invalid, Please Check Again!",
 Icon="triangle-alert",
 }
 end
@@ -5389,7 +5394,7 @@ ImageColor3=Color3.new(0,0,0),
 end
 
 local ap=ac("Frame",{
-Size=UDim2.new(0,2,0,24),
+Size=UDim2.new(0,2,0,26),
 BackgroundTransparency=1,
 Parent=ai,
 })
@@ -5400,7 +5405,7 @@ ThemeTag={
 ImageColor3="Text"
 },
 Parent=ap,
-Size=UDim2.new(0,ak and(24+24+4)or(24*1.6),0,24),
+Size=UDim2.new(0,ak and(52)or(40.8),0,24),
 AnchorPoint=Vector2.new(1,0.5),
 Position=UDim2.new(0,0,0.5,0),
 },{
@@ -5427,7 +5432,7 @@ NumberSequenceKeypoint.new(1,1),
 })
 }),
 
--- bar
+
 ab.NewRoundFrame(an,"Squircle",{
 Size=UDim2.new(0,ak and 30 or 20,0,20),
 Position=UDim2.new(0,2,0.5,0),
@@ -5865,7 +5870,7 @@ IsFocusing=false,
 
 Width=130,
 TextBoxWidth=ai.Window.NewElements and 40 or 30,
-ThumbSize=12,
+ThumbSize=13,
 }
 local ak
 local al
@@ -5907,54 +5912,53 @@ ElementTable=aj,
 ParentConfig=ai,
 }
 
-
 aj.UIElements.SliderIcon=aa.NewRoundFrame(99,"Squircle",{
-    ImageTransparency=.95,
-    Size=UDim2.new(1,-aj.TextBoxWidth-5,0,5), -- Giảm từ 4 xuống 3
-    Name="Frame",
-    ThemeTag={
-        ImageColor3="Text",
-    },
+ImageTransparency=.95,
+Size=UDim2.new(1,-aj.TextBoxWidth-8,0,4),
+Name="Frame",
+ThemeTag={
+ImageColor3="Text",
+},
 },{
-    aa.NewRoundFrame(99,"Squircle",{
-        Name="Frame",
-        Size=UDim2.new(ap,0,1,0),
-        ImageTransparency=.1,
-        ThemeTag={
-            ImageColor3="Slider",
-        },
-    },{
-        aa.NewRoundFrame(99,"Squircle",{
-            Size=UDim2.new(0,ai.Window.NewElements and(aj.ThumbSize*1.5)or(aj.ThumbSize),0,aj.ThumbSize), -- Giảm kích thước thumb
-            Position=UDim2.new(1,0,0.5,0),
-            AnchorPoint=Vector2.new(0.5,0.5),
-            ThemeTag={
-                ImageColor3="SliderThumb",
-            },
-            Name="Thumb",
-        },{
-            aa.NewRoundFrame(99,"SquircleOutline2",{
-                Size=UDim2.new(1,0,1,0),
-                ImageColor3=Color3.new(1,1,1),
-                Name="Highlight",
-                ImageTransparency=.45,
-            },{
-                ac("UIGradient",{
-                    Rotation=60,
-                    Color=ColorSequence.new{
-                        ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
-                        ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
-                        ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
-                    },
-                    Transparency=NumberSequence.new{
-                        NumberSequenceKeypoint.new(0.0,0.1),
-                        NumberSequenceKeypoint.new(0.5,1),
-                        NumberSequenceKeypoint.new(1.0,0.1),
-                    }
-                }),
-            }),
-        })
-    })
+aa.NewRoundFrame(99,"Squircle",{
+Name="Frame",
+Size=UDim2.new(ap,0,1,0),
+ImageTransparency=.1,
+ThemeTag={
+ImageColor3="Slider",
+},
+},{
+aa.NewRoundFrame(99,"Squircle",{
+Size=UDim2.new(0,ai.Window.NewElements and(aj.ThumbSize*1.75)or(aj.ThumbSize+2),0,aj.ThumbSize+2),
+Position=UDim2.new(1,0,0.5,0),
+AnchorPoint=Vector2.new(0.5,0.5),
+ThemeTag={
+ImageColor3="SliderThumb",
+},
+Name="Thumb",
+},{
+aa.NewRoundFrame(99,"SquircleOutline2",{
+Size=UDim2.new(1,0,1,0),
+ImageColor3=Color3.new(1,1,1),
+Name="Highlight",
+ImageTransparency=.45,
+},{
+ac("UIGradient",{
+Rotation=60,
+Color=ColorSequence.new{
+ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
+ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
+ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
+},
+Transparency=NumberSequence.new{
+NumberSequenceKeypoint.new(0.0,0.1),
+NumberSequenceKeypoint.new(0.5,1),
+NumberSequenceKeypoint.new(1.0,0.1),
+}
+}),
+}),
+})
+})
 })
 
 aj.UIElements.SliderContainer=ac("Frame",{
@@ -11708,8 +11712,9 @@ if not as.IgnoreAlerts then
 as:SetToTheCenter()
 as:Dialog{
 
-Title="Close Window",
-Content="Do you want to close this window? You will not be able to open it again.",
+Title="-Hacker Hub-",
+Content="Do You Want To Close This UI? You Wont Be Able To Open It Again.",
+Icon="panel-right-close",
 Buttons={
 {
 Title="Cancel",
@@ -11718,7 +11723,7 @@ Callback=function()end,
 Variant="Secondary",
 },
 {
-Title="Close Window",
+Title="Confirm",
 
 Callback=function()as:Destroy()end,
 Variant="Primary",
