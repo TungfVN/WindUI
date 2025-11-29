@@ -5427,7 +5427,7 @@ NumberSequenceKeypoint.new(1,1),
 })
 }),
 
-
+-- CHỈNH SỬA: Làm tròn và khoảng trống dài gấp đôi
 ab.NewRoundFrame(an,"Squircle",{
 Size=UDim2.new(0,ak and 30 or 20,0,20),
 Position=UDim2.new(0,2,0.5,0),
@@ -5865,7 +5865,7 @@ IsFocusing=false,
 
 Width=130,
 TextBoxWidth=ai.Window.NewElements and 40 or 30,
-ThumbSize=13,
+ThumbSize=12,
 }
 local ak
 local al
