@@ -5910,7 +5910,7 @@ ParentConfig=ai,
 
 aj.UIElements.SliderIcon=aa.NewRoundFrame(99,"Squircle",{
     ImageTransparency=.95,
-    Size=UDim2.new(1,-aj.TextBoxWidth-8,0,3), -- Giảm từ 4 xuống 3
+    Size=UDim2.new(1,-aj.TextBoxWidth-5,0,5), -- Giảm từ 4 xuống 3
     Name="Frame",
     ThemeTag={
         ImageColor3="Text",
