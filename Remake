@@ -5914,8 +5914,8 @@ ElementTable=aj,
 ParentConfig=ai,
 }
 
--- TẠO THUMB VỚI KÍCH THƯỚC CỐ ĐỊNH CHO HÌNH TRÒN
-local thumbSize = aj.ThumbSize + 3 -- KÍCH THƯỚC CỐ ĐỊNH CHO HÌNH TRÒN
+-- KÍCH THƯỚC CỐ ĐỊNH CHO HÌNH TRÒN
+local thumbSize = aj.ThumbSize + 3
 
 aj.UIElements.SliderIcon=aa.NewRoundFrame(99,"Squircle",{
 ImageTransparency=.95,
@@ -5934,65 +5934,24 @@ ImageColor3="Slider",
 },
 },{
 aa.NewRoundFrame(99,"Squircle",{
-Size=UDim2.new(0, thumbSize, 0, thumbSize), -- KÍCH THƯỚC CỐ ĐỊNH
-Position=UDim2.new(ap,0,0.5,0), -- SỬA VỊ TRÍ BAN ĐẦU
+Size=UDim2.new(0, thumbSize, 0, thumbSize),
+Position=UDim2.new(ap,0,0.5,0),
 AnchorPoint=Vector2.new(0.5,0.5),
 ThemeTag={
 ImageColor3="SliderThumb",
 },
 Name="Thumb",
 },{
--- THAY THẾ ANIMATION BẰNG HIỆU ỨNG ĐƠN GIẢN
+-- CHỈ MỘT LỚP DUY NHẤT, KHÔNG HIỆU ỨNG
 aa.NewRoundFrame(99,"Squircle",{
 Size=UDim2.new(1,0,1,0),
-ImageColor3=Color3.new(1,1,1),
+ImageColor3=Color3.new(1,1,1), -- MÀU TRẮNG
 Name="Highlight",
-ImageTransparency=0.2, -- ĐỘ TRONG SUỐT CỐ ĐỊNH
-ThemeTag = {
-    ImageColor3 = "SliderThumb"
-}
+ImageTransparency=0, -- KHÔNG TRONG SUỐT
 })
 })
 })
 })
-
--- THÊM SỰ KIỆN ĐỂ XỬ LÝ ANIMATION KHI CHẠM
-local thumb = aj.UIElements.SliderIcon.Frame.Thumb
-local originalSize = thumb.Size
-
--- KHI CHẠM VÀO - KHÔNG THAY ĐỔI KÍCH THƯỚC, CHỈ THAY ĐỔI MÀU
-thumb.MouseEnter:Connect(function()
-    -- CHỈ THAY ĐỔI ĐỘ TRONG SUỐT, GIỮ NGUYÊN KÍCH THƯỚC
-    ab.TweenService:Create(thumb.Highlight, ab.TweenInfo.new(0.15), {
-        ImageTransparency = 0
-    }):Play()
-end)
-
-thumb.MouseLeave:Connect(function()
-    -- TRỞ LẠI ĐỘ TRONG SUỐT BAN ĐẦU
-    ab.TweenService:Create(thumb.Highlight, ab.TweenInfo.new(0.15), {
-        ImageTransparency = 0.2
-    }):Play()
-end)
-
--- KHI NHẤN CHUỘT - HIỆU ỨNG NHẤN (VẪN GIỮ HÌNH TRÒN)
-thumb.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        -- HIỆU ỨNG NHẤN NHẸ (GIỮ NGUYÊN HÌNH DẠNG)
-        ab.TweenService:Create(thumb, ab.TweenInfo.new(0.1), {
-            ImageTransparency = 0.1
-        }):Play()
-    end
-end)
-
-thumb.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        -- TRỞ LẠI TRẠNG THÁI BÌNH THƯỜNG
-        ab.TweenService:Create(thumb, ab.TweenInfo.new(0.1), {
-            ImageTransparency = 0
-        }):Play()
-    end
-end)
 
 aj.UIElements.SliderContainer=ac("Frame",{
 Size=UDim2.new(0,aj.Width,0,0),
@@ -6026,7 +5985,6 @@ LayoutOrder=-1,
 
 return aj
 end
-
 aj.UIElements.SliderContainer=ac("Frame",{
 Size=UDim2.new(0,aj.Width,0,0),
 AutomaticSize="Y",
