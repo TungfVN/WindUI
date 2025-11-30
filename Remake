@@ -5870,8 +5870,9 @@ IsFocusing=false,
 
 Width=130,
 TextBoxWidth=ai.Window.NewElements and 40 or 30,
-ThumbSize=10,
+ThumbSize=13,
 }
+
 local ak
 local al
 local am
@@ -5884,111 +5885,113 @@ local aq=true
 local ar=aj.Step%1~=0
 
 local function FormatValue(as)
-if ar then
-return string.format("%.2f",as)
-else
-return tonumber(math.floor(as+0.5))
-end
+	if ar then
+		return string.format("%.2f",as)
+	else
+		return tonumber(math.floor(as+0.5))
+	end
 end
 
 local function CalculateValue(as)
-if ar then
-return math.floor(as/aj.Step+0.5)*aj.Step
-else
-return math.floor(as/aj.Step+0.5)*aj.Step
-end
+	if ar then
+		return math.floor(as/aj.Step+0.5)*aj.Step
+	else
+		return math.floor(as/aj.Step+0.5)*aj.Step
+	end
 end
 
 aj.SliderFrame=a.load'z'{
-Title=aj.Title,
-Desc=aj.Desc,
-Parent=ai.Parent,
-TextOffset=aj.Width,
-Hover=false,
-Tab=ai.Tab,
-Index=ai.Index,
-Window=ai.Window,
-ElementTable=aj,
-ParentConfig=ai,
+	Title=aj.Title,
+	Desc=aj.Desc,
+	Parent=ai.Parent,
+	TextOffset=aj.Width,
+	Hover=false,
+	Tab=ai.Tab,
+	Index=ai.Index,
+	Window=ai.Window,
+	ElementTable=aj,
+	ParentConfig=ai,
 }
 
 aj.UIElements.SliderIcon=aa.NewRoundFrame(99,"Squircle",{
-ImageTransparency=.95,
-Size=UDim2.new(1,-aj.TextBoxWidth-3,0,3),
-Name="Frame",
-ThemeTag={
-ImageColor3="Text",
-},
+	ImageTransparency=.95,
+	Size=UDim2.new(1,-aj.TextBoxWidth-8,0,4),
+	Name="Frame",
+	ThemeTag={
+		ImageColor3="Text",
+	},
 },{
 aa.NewRoundFrame(99,"Squircle",{
-Name="Frame",
-Size=UDim2.new(ap,0,1,0),
-ImageTransparency=.1,
-ThemeTag={
-ImageColor3="Slider",
-},
+	Name="Frame",
+	Size=UDim2.new(ap,0,1,0),
+	ImageTransparency=.1,
+	ThemeTag={ ImageColor3="Slider" },
 },{
-aa.NewRoundFrame(99,"Squircle",{
-Size=UDim2.new(0,ai.Window.NewElements and(aj.ThumbSize*1)or(aj.ThumbSize+0),0,aj.ThumbSize+0),
-Position=UDim2.new(1,0,0.5,0),
-AnchorPoint=Vector2.new(0.5,0.5),
-ThemeTag={
-ImageColor3="SliderThumb",
-},
-Name="Thumb",
+	
+--========================================================--
+--      ⭐ FIX: THUMB + HIGHLIGHT THÀNH HÌNH TRÒN ⭐      --
+--========================================================--
+
+aa.NewRoundFrame(99,"Circle",{ -- Hình tròn
+	Size = UDim2.new(0, aj.ThumbSize, 0, aj.ThumbSize),
+	Position = UDim2.new(1,0,0.5,0),
+	AnchorPoint = Vector2.new(0.5,0.5),
+	ThemeTag={ ImageColor3="SliderThumb" },
+	Name="Thumb",
 },{
-aa.NewRoundFrame(99,"SquircleOutline2",{
-Size=UDim2.new(1,0,1,0),
-ImageColor3=Color3.new(1,1,1),
-Name="Highlight",
-ImageTransparency=.45,
-},{
-ac("UIGradient",{
-Rotation=60,
-Color=ColorSequence.new{
-ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
-ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
-ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
-},
-Transparency=NumberSequence.new{
-NumberSequenceKeypoint.new(0.0,0.1),
-NumberSequenceKeypoint.new(0.5,1),
-NumberSequenceKeypoint.new(1.0,0.1),
-}
+	aa.NewRoundFrame(99,"Circle",{ -- Highlight cũng tròn
+		Size=UDim2.new(1,0,1,0),
+		ImageColor3=Color3.new(1,1,1),
+		Name="Highlight",
+		ImageTransparency=.45,
+	},{
+		ac("UIGradient",{
+			Rotation=60,
+			Color=ColorSequence.new{
+				ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
+				ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
+				ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
+			},
+			Transparency=NumberSequence.new{
+				NumberSequenceKeypoint.new(0.0,0.1),
+				NumberSequenceKeypoint.new(0.5,1),
+				NumberSequenceKeypoint.new(1.0,0.1),
+			}
+		}),
+	}),
 }),
-}),
+
+--========================================================--
 })
 })
 })
 
 aj.UIElements.SliderContainer=ac("Frame",{
-Size=UDim2.new(0,aj.Width,0,0),
-AutomaticSize="Y",
-Position=UDim2.new(1,ai.Window.NewElements and-16 or 0,0.5,0),
-AnchorPoint=Vector2.new(1,0.5),
-BackgroundTransparency=1,
-Parent=aj.SliderFrame.UIElements.Main,
+	Size=UDim2.new(0,aj.Width,0,0),
+	AutomaticSize="Y",
+	Position=UDim2.new(1,ai.Window.NewElements and-16 or 0,0.5,0),
+	AnchorPoint=Vector2.new(1,0.5),
+	BackgroundTransparency=1,
+	Parent=aj.SliderFrame.UIElements.Main,
 },{
-ac("UIListLayout",{
-Padding=UDim.new(0,8),
-FillDirection="Horizontal",
-VerticalAlignment="Center",
-}),
-aj.UIElements.SliderIcon,
-ac("TextBox",{
-Size=UDim2.new(0,aj.TextBoxWidth,0,0),
-TextXAlignment="Left",
-Text=FormatValue(an),
-ThemeTag={
-TextColor3="Text"
-},
-TextTransparency=.4,
-AutomaticSize="Y",
-TextSize=15,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
-BackgroundTransparency=1,
-LayoutOrder=-1,
-})
+	ac("UIListLayout",{
+		Padding=UDim.new(0,8),
+		FillDirection="Horizontal",
+		VerticalAlignment="Center",
+	}),
+	aj.UIElements.SliderIcon,
+	ac("TextBox",{
+		Size=UDim2.new(0,aj.TextBoxWidth,0,0),
+		TextXAlignment="Left",
+		Text=FormatValue(an),
+		ThemeTag={ TextColor3="Text" },
+		TextTransparency=.4,
+		AutomaticSize="Y",
+		TextSize=15,
+		FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+		BackgroundTransparency=1,
+		LayoutOrder=-1,
+	})
 })
 
 function aj.Lock(as)
