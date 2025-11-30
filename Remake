@@ -5869,8 +5869,8 @@ UIElements={},
 IsFocusing=false,
 
 Width=130,
-TextBoxWidth=ai.Window.NewElements and 25,
-ThumbSize=10,
+TextBoxWidth=ai.Window.NewElements and 30,
+ThumbSize=7,
 }
 local ak
 local al
