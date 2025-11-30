@@ -5856,7 +5856,6 @@ local ae=(cloneref or clonereference or function(ae)return ae end)
 local af={}
 
 local ag=false
-
 function af.New(ah,ai)
 local aj={
 __type="Slider",
@@ -5914,9 +5913,6 @@ ElementTable=aj,
 ParentConfig=ai,
 }
 
--- KÍCH THƯỚC CỐ ĐỊNH CHO HÌNH TRÒN
-local thumbSize = aj.ThumbSize + 3
-
 aj.UIElements.SliderIcon=aa.NewRoundFrame(99,"Squircle",{
 ImageTransparency=.95,
 Size=UDim2.new(1,-aj.TextBoxWidth-8,0,4),
@@ -5934,18 +5930,18 @@ ImageColor3="Slider",
 },
 },{
 aa.NewRoundFrame(99,"Squircle",{
-Size=UDim2.new(0, thumbSize, 0, thumbSize),
-Position=UDim2.new(ap,0,0.5,0),
+Size=UDim2.new(0, aj.ThumbSize + 3, 0, aj.ThumbSize + 3),
+Position=UDim2.new(ap,0,0.5,0), -- SỬA THÀNH ap THAY VÌ 1
 AnchorPoint=Vector2.new(0.5,0.5),
 ThemeTag={
 ImageColor3="SliderThumb",
 },
 Name="Thumb",
 },{
--- CHỈ MỘT LỚP DUY NHẤT, KHÔNG HIỆU ỨNG
+-- LOẠI BỎ HOÀN TOÀN UIGRADIENT VÀ CHỈ ĐỂ LẠI 1 LỚP ĐƠN GIẢN
 aa.NewRoundFrame(99,"Squircle",{
 Size=UDim2.new(1,0,1,0),
-ImageColor3=Color3.new(1,1,1), -- MÀU TRẮNG
+ImageColor3=Color3.new(1,1,1),
 Name="Highlight",
 ImageTransparency=0, -- KHÔNG TRONG SUỐT
 })
@@ -5985,35 +5981,6 @@ LayoutOrder=-1,
 
 return aj
 end
-aj.UIElements.SliderContainer=ac("Frame",{
-Size=UDim2.new(0,aj.Width,0,0),
-AutomaticSize="Y",
-Position=UDim2.new(1,ai.Window.NewElements and-16 or 0,0.5,0),
-AnchorPoint=Vector2.new(1,0.5),
-BackgroundTransparency=1,
-Parent=aj.SliderFrame.UIElements.Main,
-},{
-ac("UIListLayout",{
-Padding=UDim.new(0,8),
-FillDirection="Horizontal",
-VerticalAlignment="Center",
-}),
-aj.UIElements.SliderIcon,
-ac("TextBox",{
-Size=UDim2.new(0,aj.TextBoxWidth,0,0),
-TextXAlignment="Left",
-Text=FormatValue(an),
-ThemeTag={
-TextColor3="Text"
-},
-TextTransparency=.4,
-AutomaticSize="Y",
-TextSize=15,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
-BackgroundTransparency=1,
-LayoutOrder=-1,
-})
-})
 function aj.Lock(as)
 aj.Locked=true
 aq=false
