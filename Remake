@@ -1,3 +1,4 @@
+
 --[[
      _      ___         ____  ______
     | | /| / (_)__  ___/ / / / /  _/
@@ -5870,7 +5871,7 @@ IsFocusing=false,
 
 Width=130,
 TextBoxWidth=ai.Window.NewElements and 40 or 30,
-ThumbSize=10,
+ThumbSize=10, -- GIẢM TỪ 13 XUỐNG 10
 }
 
 local ak
@@ -5898,17 +5899,6 @@ return math.floor(as/aj.Step+0.5)*aj.Step
 else
 return math.floor(as/aj.Step+0.5)*aj.Step
 end
-end
-
--- HÀM CẬP NHẬT VỊ TRÍ THUMB (KHÔNG ANIMATION)
-local function UpdateThumbPosition(value)
-    local minValue = aj.Value.Min or 0
-    local maxValue = aj.Value.Max or 100
-    local newAp = (value - minValue) / (maxValue - minValue)
-    
-    -- CẬP NHẬT TRỰC TIẾP KHÔNG ANIMATION
-    aj.UIElements.SliderFrameInner.Size = UDim2.new(newAp, 0, 1, 0)
-    aj.UIElements.Thumb.Position = UDim2.new(newAp, 0, 0.5, 0)
 end
 
 aj.SliderFrame=a.load'z'{
@@ -5939,31 +5929,39 @@ ImageTransparency=.1,
 ThemeTag={
 ImageColor3="Slider",
 },
-Name = "SliderFrameInner",
 },{
 aa.NewRoundFrame(99,"Squircle",{
-Size=UDim2.new(0, aj.ThumbSize + 3, 0, aj.ThumbSize + 3), -- HÌNH TRÒN VĨNH VIỄN
-Position=UDim2.new(ap,0,0.5,0),
+Size=UDim2.new(0,ai.Window.NewElements and(aj.ThumbSize*1.5)or(aj.ThumbSize+1),0,aj.ThumbSize+1), -- GIẢM KÍCH THƯỚC
+Position=UDim2.new(1,0,0.5,0),
 AnchorPoint=Vector2.new(0.5,0.5),
 ThemeTag={
 ImageColor3="SliderThumb",
 },
 Name="Thumb",
 },{
--- LOẠI BỎ HIỆU ỨNG GLOW/ANIMATION
-aa.NewRoundFrame(99,"Squircle",{
+aa.NewRoundFrame(99,"SquircleOutline2",{
 Size=UDim2.new(1,0,1,0),
-ImageColor3=Color3.new(1,1,1), -- MÀU TRẮNG ĐỀU
+ImageColor3=Color3.new(1,1,1), -- MÀU TRẮNG
 Name="Highlight",
-ImageTransparency=0, -- KHÔNG TRONG SUỐT
+ImageTransparency=.3, -- GIẢM ĐỘ TRONG SUỐT ĐỂ TRẮNG HƠN
+},{
+ac("UIGradient",{
+Rotation=60,
+Color=ColorSequence.new{
+ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)), -- TRẮNG
+ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)), -- TRẮNG
+ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)), -- TRẮNG
+},
+Transparency=NumberSequence.new{
+NumberSequenceKeypoint.new(0.0,0.05), -- GIẢM ĐỘ TRONG SUỐT
+NumberSequenceKeypoint.new(0.5,0.8),
+NumberSequenceKeypoint.new(1.0,0.05), -- GIẢM ĐỘ TRONG SUỐT
+}
+}),
+}),
 })
 })
 })
-})
-
--- LƯU REFERENCES
-aj.UIElements.SliderFrameInner = aj.UIElements.SliderIcon.Frame
-aj.UIElements.Thumb = aj.UIElements.SliderFrameInner.Thumb
 
 aj.UIElements.SliderContainer=ac("Frame",{
 Size=UDim2.new(0,aj.Width,0,0),
@@ -5992,38 +5990,8 @@ TextSize=15,
 FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
 BackgroundTransparency=1,
 LayoutOrder=-1,
-Name = "ValueTextBox",
 })
 })
-
--- INPUT HANDLING ĐƠN GIẢN (KHÔNG ANIMATION)
-local function onInputChanged(input)
-    if not aj.IsFocusing then return end
-    
-    local sliderFrame = aj.UIElements.SliderIcon
-    local sliderAbsoluteSize = sliderFrame.AbsoluteSize.X
-    local sliderAbsolutePosition = sliderFrame.AbsolutePosition.X
-    
-    local mouseX = input.Position.X
-    local relativeX = math.clamp(mouseX - sliderAbsolutePosition, 0, sliderAbsoluteSize)
-    local percentage = relativeX / sliderAbsoluteSize
-    
-    local minValue = aj.Value.Min or 0
-    local maxValue = aj.Value.Max or 100
-    local newValue = minValue + percentage * (maxValue - minValue)
-    newValue = CalculateValue(newValue)
-    
-    -- CẬP NHẬT TRỰC TIẾP
-    ao = newValue
-    ap = percentage
-    
-    UpdateThumbPosition(newValue)
-    aj.UIElements.SliderContainer.ValueTextBox.Text = FormatValue(newValue)
-    aj.Callback(newValue)
-end
-
-return aj
-end
 function aj.Lock(as)
 aj.Locked=true
 aq=false
