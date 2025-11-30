@@ -5870,8 +5870,8 @@ UIElements={},
 IsFocusing=false,
 
 Width=130,
-TextBoxWidth=ai.Window.NewElements and 35 or 30,
-ThumbSize=9,
+TextBoxWidth=ai.Window.NewElements and 40 or 30,
+ThumbSize=10,
 }
 local ak
 local al
@@ -5991,7 +5991,6 @@ BackgroundTransparency=1,
 LayoutOrder=-1,
 })
 })
-
 
 function aj.Lock(as)
 aj.Locked=true
