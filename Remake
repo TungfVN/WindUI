@@ -8320,8 +8320,6 @@ local af=aa.Tween
 
 local ah={}
 
-local ah={}
-
 function ah.New(aj,ak)
 local al={
 __type="Section",
@@ -8432,30 +8430,6 @@ ThemeTag={
 ImageColor3="Text",
 },
 },{
--- VIỀN SECTION --
-aa.NewRoundFrame(ak.Window.ElementConfig.UICorner,"SquircleOutline",{
-    Size=UDim2.new(1,0,1,0),
-    ThemeTag={
-        ImageColor3="Outline",
-    },
-    ImageTransparency=0.85,
-    ZIndex=0,
-},{
-    ae("UIGradient",{
-        Rotation=70,
-        Color=ColorSequence.new{
-            ColorSequenceKeypoint.new(0.0,Color3.fromRGB(255,255,255)),
-            ColorSequenceKeypoint.new(0.5,Color3.fromRGB(255,255,255)),
-            ColorSequenceKeypoint.new(1.0,Color3.fromRGB(255,255,255)),
-        },
-        Transparency=NumberSequence.new{
-            NumberSequenceKeypoint.new(0.0,0.1),
-            NumberSequenceKeypoint.new(0.5,1),
-            NumberSequenceKeypoint.new(1.0,0.1),
-        }
-    })
-}),
-
 ae("TextButton",{
 Size=UDim2.new(1,0,0,Expandable and 0 or al.HeaderSize),
 BackgroundTransparency=1,
