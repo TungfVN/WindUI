@@ -6159,7 +6159,6 @@ ah=false
 ax.ScrollingEnabled=true
 
 if aj.Window.NewElements then
-af(ak.UIElements.SliderIcon.Frame.Thumb,.2,{ImageTransparency=0,Size=UDim2.new(0,aj.Window.NewElements and(ak.ThumbSize*2)or(ak.ThumbSize+2),0,aj.Window.NewElements and(ak.ThumbSize+4)or(ak.ThumbSize+2))},Enum.EasingStyle.Quint,Enum.EasingDirection.InOut):Play()
 end
 if aw then aw:Close(false)end
 end
