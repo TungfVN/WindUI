@@ -6022,7 +6022,8 @@ ImageColor3="Slider",
 },
 },{
 ad.NewRoundFrame(99,"Squircle",{
-Size=UDim2.new(0,aj.Window.NewElements and(ak.ThumbSize*2)or(ak.ThumbSize+2),0,aj.Window.NewElements and(ak.ThumbSize+4)or(ak.ThumbSize+2)),
+-- CHỈNH SỬA 1: Luôn sử dụng kích thước tròn cho thumb
+Size=UDim2.new(0,ak.ThumbSize+2,0,ak.ThumbSize+2),
 Position=UDim2.new(1,0,0.5,0),
 AnchorPoint=Vector2.new(0.5,0.5),
 ThemeTag={
@@ -6158,7 +6159,9 @@ an:Disconnect()
 ah=false
 ax.ScrollingEnabled=true
 
+-- CHỈNH SỬA 2: Animation khi thả chuột - sử dụng kích thước tròn
 if aj.Window.NewElements then
+    af(ak.UIElements.SliderIcon.Frame.Thumb,.2,{ImageTransparency=0,Size=UDim2.new(0,ak.ThumbSize+2,0,ak.ThumbSize+2)},Enum.EasingStyle.Quint,Enum.EasingDirection.InOut):Play()
 end
 if aw then aw:Close(false)end
 end
@@ -6226,9 +6229,9 @@ end
 ak:Set(ao,ay)
 
 if ay.UserInputType==Enum.UserInputType.MouseButton1 or ay.UserInputType==Enum.UserInputType.Touch then
-
+-- CHỈNH SỬA 3: Animation khi bắt đầu kéo - sử dụng kích thước tròn
 if aj.Window.NewElements then
-af(ak.UIElements.SliderIcon.Frame.Thumb,.24,{ImageTransparency=.85,Size=UDim2.new(0,(aj.Window.NewElements and(ak.ThumbSize*2)or(ak.ThumbSize))+8,0,ak.ThumbSize+8)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
+    af(ak.UIElements.SliderIcon.Frame.Thumb,.24,{ImageTransparency=.85,Size=UDim2.new(0,ak.ThumbSize+8,0,ak.ThumbSize+8)},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 end
 if aw then aw:Open()end
 print"piskaa"
