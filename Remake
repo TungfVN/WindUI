@@ -12256,7 +12256,7 @@ Buttons={
 {
 Title="Cancel",
 
-Callback=function()end,
+Callback=function()B=false end
 Variant="Secondary",
 },
 {
